@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <header> <h1>STAVKE</h1>  </header>
+
+    <ul>
+        <li class="tab-switcher" data-tab-index="0" tabindex="0">
+            Prva
+        </li>
+        <li class="tab-switcher" data-tab-index="1" tabindex="0">
+            Druga
+        </li>
+        <li class="tab-switcher" data-tab-index="2" tabindex="0">
+            Treca
+        </li>
+        <li class="tab-switcher" data-tab-index="3" tabindex="0">
+            Cetvrta
+        </li>
+    </ul>
+    <div id="allTabsContainer">
+        <div class="tab-container" data-tab-index="0">
+            <h1>Prva strana</h1>
+        </div>
+        <div class="tab-container" data-tab-index="1" style="display:none;">
+            <h1>Druga strana</h1>
+        </div>
+        <div class="tab-container" data-tab-index="2" style="display:none;">
+            <h1>Treca strana</h1> 
+        </div>
+        <div class="tab-container" data-tab-index="3" style="display:none;">
+            <h1>Cetvrta strana</h1>
+        </div>
+    </div>
+    <style>
+        header{
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            background: rgb(68, 68, 107);
+
+        }
+        header:hover{
+            color: darkgray;
+        }
+        body{
+            background-color: rgb(68, 68, 107);
+        }
+        ul {
+            padding: 0;
+           list-style: none;
+           background: rgb(68, 68, 107) ;
+        
+        }
+        ul li{
+            font-family: Arial, Helvetica, sans-serif;
+            display: inline-block;
+           position: static;
+            align-items: center;
+           line-height: 21px;
+           text-align: left;
+           
+        }
+        #allTabsSwitcher{
+            border-color: darkblue;
+            
+        }
+        ul li:hover{
+            color:darkgray
+        }
+        
+        .tab-switcher {
+          display: inline-block;
+          cursor: pointer;
+          margin-right: 25px;
+        }
+        #allTabsContainer{
+            background: darkgrey;
+            border-style: solid;
+            border-color: black;
+        }
+        </style>
+<script>
+$(document).ready(function () {
+    var previousActiveTabIndex = 0;
+
+    $(".tab-switcher").on('click keypress', function (event) {
+
+        // event.which === 13 znaci da je enter pritisnut
+        if ((event.type === "keypress" && event.which === 13) || event.type === "click") {
+
+            var tabClicked = $(this).data("tab-index");
+
+            if(tabClicked != previousActiveTabIndex) {
+                $("#allTabsContainer .tab-container").each(function () {
+                    if($(this).data("tab-index") == tabClicked) {
+                        $(".tab-container").hide();
+                        $(this).show();
+                        previousActiveTabIndex = $(this).data("tab-index");
+                        return;
+                    }
+                });
+            }
+        }
+    });
+});
+</script>
+   </header>
+</body>
+</html> 
